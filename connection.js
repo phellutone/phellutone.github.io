@@ -2,6 +2,10 @@ let HOST = "wss://mso5-ws-s.herokuapp.com/" //ws server address
 let ws = new WebSocket(HOST);
 let el;
 
+function motionhandler(e){
+  ws.send(e.acceleration.x+":"+e.acceleration.y+":"+e.acceleration.z);
+}
+
 let bstate = false
 let button = document.getElementById("button");
 button.addEventListener("click", e => {
@@ -12,13 +16,11 @@ button.addEventListener("click", e => {
   }
   
   if(bstate){
-    window.removeEventListener("devicemotion");
+    window.removeEventListener("devicemotion", motionhandler);
     document.getElementById("button").innerHTML = "start";
     bstate = false;
   }else{
-    window.addEventListener("devicemotion", e => {
-      ws.send(e.acceleration.x+":"+e.acceleration.y+":"+e.acceleration.z);
-    });
+    window.addEventListener("devicemotion", motionhandler);
     document.getElementById("button").innerHTML = "stop";
     bstate = true;
   }
