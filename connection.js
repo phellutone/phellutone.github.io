@@ -1,4 +1,4 @@
-let HOST = "" //ws server address
+let HOST = "ws://mso5-ws-s.herokuapp.com/" //ws server address
 let ws = new WebSocket(HOST);
 let el;
 
