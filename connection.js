@@ -14,7 +14,7 @@ button.addEventListener("click", e => {
   if(bstate){
     window.removeEventListener("devicemotion");
     document.getElementById("button").innerHTML = "start";
-    bstate = false
+    bstate = false;
   }else{
     window.addEventListener("devicemotion", e => {
       ws.send(e.acceleration.x+":"+e.acceleration.y+":"+e.acceleration.z);
