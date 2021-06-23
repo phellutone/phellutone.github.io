@@ -1,6 +1,7 @@
 let HOST = "wss://mso5-ws-s.herokuapp.com/" //ws server address
 let ws = new WebSocket(HOST);
 let el;
+let em;
 
 function motionhandler(e){
   var data = {
@@ -8,11 +9,9 @@ function motionhandler(e){
     y: e.acceleration.y,
     z: e.acceleration.z
   }
-  var message = {
-    head: "post",
-    data: data
-  }
-  ws.send(JSON.stringify(message));
+  ws.send(JSON.stringify(data));
+  em = document.getElementById("data");
+  em.innerHTML = JSON.stringify(data);
 }
 
 let bstate = false
@@ -38,7 +37,7 @@ button.addEventListener("click", e => {
 
 
 ws.onmessage = (event) => {
-  el = document.getElementById('ws');
+  el = document.getElementById("ws");
   el.innerHTML = event.data;
 };
 
