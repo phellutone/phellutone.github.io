@@ -3,7 +3,16 @@ let ws = new WebSocket(HOST);
 let el;
 
 function motionhandler(e){
-  ws.send(e.acceleration.x+":"+e.acceleration.y+":"+e.acceleration.z);
+  var data = {
+    x: e.acceleration.x,
+    y: e.acceleration.y,
+    z: e.acceleration.z
+  }
+  var message = {
+    head: "post",
+    data: data
+  }
+  ws.send(JSON.stringify(message));
 }
 
 let bstate = false
