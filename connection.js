@@ -21,6 +21,7 @@ button.addEventListener("click", e => {
   
   if(DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === "function"){
     DeviceMotionEvent.requestPermission();
+    //TODO: is available DeviceMotionEvent flag
   }
   
   if(bstate){
