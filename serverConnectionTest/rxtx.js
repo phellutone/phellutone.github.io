@@ -26,22 +26,23 @@ const handler = (event) => {
     ws.send(string)
   }
 
-  const dataText = document.querySelector('.data')
+  const dataText = document.getElementById('data')
   dataText.innerHTML = string
 }
 
-const connectButton = document.querySelector('.connectButton')
+const connectButton = document.getElementById('connectButton')
 connectButton.addEventListener('click', async () => {
   const characteristic = await fetchCharacteristic()
   characteristic.addEventListener('characteristicvaluechanged', handler)
   characteristic.startNotifications()
 })
 
-const sendButton = document.querySelector('.sendButton', () => {
+const sendButton = document.getElementById('sendButton')
+sendButton.addEventListener('click', () => {
   sendstate = !sendstate
 })
 
 ws.onmessage = (event) => {
-  const rxdata = document.querySelector('.ws')
+  const rxdata = document.getElementById('ws')
   rxdata.innerHTML = event.data;
 };
