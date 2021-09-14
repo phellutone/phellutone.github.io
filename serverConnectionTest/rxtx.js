@@ -1,5 +1,5 @@
-let HOST = "wss://mso5-ws-s.herokuapp.com/" //ws server address
-let ws = new WebSocket(HOST)
+const HOST = "wss://mso5-ws-s.herokuapp.com/" //ws server address
+const ws = new WebSocket(HOST)
 let sendstate = false
 
 const fetchCharacteristic = async () => {
