@@ -1,12 +1,18 @@
-const HOST = "wss://mso5-ws-s.herokuapp.com/" //ws server address
+
+//websocket
+const HOST = "wss://mso5-ws-s.herokuapp.com/"
 const ws = new WebSocket(HOST)
+
+//bluetooth
+const serviceUUID = 'd5875408-fa51-4763-a75d-7d33cecebc31'
+const characteristicUUID = 'a4f01d8c-a037-43b6-9050-1876a8c23584'
+const devname = 'NefryBT'
+
 let sendstate = false
 
 const fetchCharacteristic = async () => {
-  const serviceUUID = 'd5875408-fa51-4763-a75d-7d33cecebc31'
-  const characteristicUUID = 'a4f01d8c-a037-43b6-9050-1876a8c23584'
   const options = {
-    filters: [{name: 'NefryBT'}],
+    filters: [{name: devname}],
     optionalServices: [serviceUUID]
   }
 
@@ -26,7 +32,7 @@ const handler = (event) => {
     ws.send(string)
   }
 
-  const dataText = document.getElementById('data')
+  const dataText = document.getElementById('bledata')
   dataText.innerHTML = string
 }
 
@@ -43,6 +49,6 @@ sendButton.addEventListener('click', () => {
 })
 
 ws.onmessage = (event) => {
-  const rxdata = document.getElementById('ws')
+  const rxdata = document.getElementById('wsdata')
   rxdata.innerHTML = event.data;
 };
