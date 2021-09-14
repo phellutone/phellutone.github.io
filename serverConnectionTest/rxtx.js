@@ -1,6 +1,6 @@
 
 //websocket
-const HOST = "wss://mso5-ws-s.herokuapp.com/"
+const HOST = "wss://mso5-ws-s.herokuapp.com/c"
 const ws = new WebSocket(HOST)
 
 //bluetooth
