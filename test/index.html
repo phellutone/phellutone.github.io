@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ble test</title>
+  </head>
+  <body>
+    <button id="b">connect</button>
+    <script>
+      var b = document.getElementById("b")
+      b.addEventListener("click", () => {
+        navigator.bluetooth.requestDevice({
+          //filters: [{ namePrefix: 'SO-01M' }]
+          acceptAllDevices: true,
+        }).then(device => {
+          console.log(device.name)
+          return device.gatt.connect()
+        }).then(server => {
+          return server.getPrimaryServices()
+        }).then(services => {
+          return console.log(services)
+        })
+      })
+    </script>
+  </body>
+</html>
