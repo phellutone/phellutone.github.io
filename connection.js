@@ -23,7 +23,7 @@ function orientationhandler(e){
     z: e.alpha
   }
   ws.send(JSON.stringify(data));
-  em = document.getElementById("data");
+  em = document.getElementById("orientation");
   em.innerHTML = JSON.stringify(data);
 }
 
